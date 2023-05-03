@@ -1,0 +1,52 @@
+<form class="card" [formGroup]="form" (ngSubmit)="submit()">
+  <h2>Войти в панель админа</h2>
+
+  <div *ngIf="auth.error$ | async as error" class="alert alert-danger">
+    {{ error }}
+  </div>
+  <div *ngIf="massage" class="alert alert-info">
+    {{ massage }}
+  </div>
+
+
+  <div
+    [ngClass]="{
+      invalid: form.controls['email'].invalid && form.controls['email'].touched
+    }"
+    class="form-control"
+  >
+    <label for="email">Email:</label>
+    <input formControlName="email" id="email" type="email" />
+    <div
+      *ngIf="form.controls['email'].invalid && form.controls['email'].touched"
+      class="validation"
+    >
+      <small *ngIf="form.controls['email'].errors"
+        >Введите корректный Email:</small
+      >
+    </div>
+  </div>
+
+  <div
+    [ngClass]="{
+      invalid:
+        form.controls['password'].invalid && form.controls['password'].touched
+    }"
+    class="form-control"
+  >
+    <label for="password">Password:</label>
+    <input formControlName="password" id="password" type="password" />
+    <div
+      *ngIf="
+        form.controls['password'].touched && form.controls['password'].invalid
+      "
+      class="validation"
+    >
+      <small>error</small>
+    </div>
+  </div>
+
+  <button [disabled]="form.invalid" type="submit" class="btn btn-primary">
+    Войти
+  </button>
+</form>

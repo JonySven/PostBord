@@ -1,0 +1,39 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <h1>Создание поста</h1>
+  <div
+    [ngClass]="{
+      invalid: form.controls['title'].invalid && form.controls['title'].touched
+    }"
+    class="form-control"
+  >
+    <label for="title">Название поста:</label>
+    <input formControlName="title" id="title" type="text" />
+    <div
+      *ngIf="form.controls['title'].invalid && form.controls['title'].touched"
+      class="validation"
+    >
+      <small *ngIf="form.controls['title'].errors">Введите название поста:</small>
+    </div>
+  </div>
+
+  <div class="form-control">
+    <label>Контент поста:</label>
+  </div>
+
+  <div
+    [ngClass]="{
+      invalid: form.controls['avtor'].invalid && form.controls['avtor'].touched
+    }"
+    class="form-control"
+  >
+    <label for="avtor">Автор поста:</label>
+    <input formControlName="avtor" id="avtor" type="text" />
+    <div
+      *ngIf="form.controls['avtor'].invalid && form.controls['avtor'].touched"
+      class="validation"
+    >
+      <small *ngIf="form.controls['avtor'].errors">Введите автора:</small>
+    </div>
+  </div>
+  <button [disabled]="form.invalid" class="btn btn-dark" type="submit">Создать пост</button>
+</form>
