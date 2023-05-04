@@ -10,6 +10,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AuthService } from "./shared/services/auth.service";
 import { SheredModule } from "../sherad/shared.module";
 import { AuthGuard } from "./shared/services/auth.guard";
+import { SearchPipe } from './shared/search.pipe';
+import { AlertComponent } from "./shared/components/alert/alert.component";
 
 @NgModule({
     imports: [
@@ -35,7 +37,9 @@ import { AuthGuard } from "./shared/services/auth.guard";
         LoginPageComponent,
         DashboardPageComponent,
         CreatePageComponent,
-        EditPageComponent
+        EditPageComponent,
+        SearchPipe,
+        AlertComponent
     ],
     providers: [AuthService, AuthGuard]
 })

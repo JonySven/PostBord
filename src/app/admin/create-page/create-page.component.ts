@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Post } from 'src/app/sherad/interfaces';
+import { PostService } from 'src/app/sherad/posts.service';
+import { AlertService } from '../shared/services/alert.service';
+
+
 
 @Component({
   selector: 'app-create-page',
@@ -11,7 +15,7 @@ export class CreatePageComponent implements OnInit{
 
   form!: FormGroup;
 
-  constructor(){}
+  constructor(private postService: PostService, private alert: AlertService){}
 
   ngOnInit() {
       this.form = new FormGroup({
@@ -30,5 +34,10 @@ export class CreatePageComponent implements OnInit{
       text: this.form.value.text,
       date: new Date()
     }
+    this.postService.create(post).subscribe(()=> {
+      this.form.reset()
+      this.alert.success('Пост был создан')
+    })  
+      
   }
 }

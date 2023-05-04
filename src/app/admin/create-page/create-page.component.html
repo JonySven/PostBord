@@ -12,12 +12,15 @@
       *ngIf="form.controls['title'].invalid && form.controls['title'].touched"
       class="validation"
     >
-      <small *ngIf="form.controls['title'].errors">Введите название поста:</small>
+      <small *ngIf="form.controls['title'].errors"
+        >Введите название поста:</small
+      >
     </div>
   </div>
 
   <div class="form-control">
     <label>Контент поста:</label>
+    <quill-editor formControlName="text"></quill-editor>
   </div>
 
   <div
@@ -35,5 +38,7 @@
       <small *ngIf="form.controls['avtor'].errors">Введите автора:</small>
     </div>
   </div>
-  <button [disabled]="form.invalid" class="btn btn-dark" type="submit">Создать пост</button>
+  <button [disabled]="form.invalid" class="btn btn-dark" type="submit">
+    Создать пост
+  </button>
 </form>
